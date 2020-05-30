@@ -7,24 +7,15 @@
      });
  }
 
-//  if ('serviceWorker' in navigator) {
-//     navigator.serviceWorker.register('./service-worker.js')
-//       .then(() => navigator.serviceWorker.ready)
-//       .then(registration => {
-//         if ('SyncManager' in window) {
-//           registration.sync.register('sync-transactions');
-//         }
-//       })
-//   }
-
  const FILES_TO_CACHE = [
     '/',
     '/index.html',
     '/styles.css',
     '/index.js',
-    '/manifest.json',
+    '/manifest.webmanifest',
     '/icons/icon-192x192.png',
     '/icons/icon-512x512.png',
+    'https://cdn.jsdelivr.net/npm/chart.js@2.8.0'
   ];
   
   const CACHE_NAME = 'static-cache-v2';
@@ -71,7 +62,6 @@
               if (response.status === 200) {
                 cache.put(evt.request.url, response.clone());
               }
-  
               return response;
             })
             .catch(err => {
